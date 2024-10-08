@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Tetraforce</title>
+    <style>
+      body {
+        font-family: arial;
+        margin: 0;
+        padding: none;
+      }
+
+      .emscripten {
+        padding-right: 0;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+      }
+      div.emscripten {
+        text-align: center;
+      }
+      div.emscripten_border {
+        border: 1px solid black;
+      }
+      /* the canvas *must not* have any border or padding, or mouse coords will be wrong */
+      canvas.emscripten {
+        border: 0px none;
+        background-color: black;
+      }
+
+      #volumeButton {
+        position: absolute;
+        top: 100px;
+        right: 10px;
+        padding: 10px;
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+      }
+
+      #volumeButton img {
+        width: 40px;
+        height: 40px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="emscripten_border">
+      <canvas
+        class="emscripten"
+        id="canvas"
+        oncontextmenu="event.preventDefault()"
+        tabindex="-1"
+      ></canvas>
+      <button id="volumeButton" onclick="toggleMusicVolume()">
+        <img id="volumeIcon" src="assets/volume.png" alt="Volume" />
+      </button>
+    </div>
+
+    <script type="text/javascript">
+      var Module = {
+        canvas: (() => {
+          var canvas = document.getElementById("canvas");
+          canvas.addEventListener(
+            "webglcontextlost",
+            (e) => {
+              alert("WebGL context lost. You will need to reload the page.");
+              e.preventDefault();
+            },
+            false
+          );
+
+          return canvas;
+        })(),
+      };
+
+      let isMuted = false;
+      const volumeIcon = document.getElementById("volumeIcon");
+
+      function toggleMusicVolume() {
+        Module.ccall("toggleMusicVolume", null, [], []);
+        if (isMuted) {
+          volumeIcon.src = "assets/volume.png";
+        } else {
+          volumeIcon.src = "assets/mute.png";
+        }
+        isMuted = !isMuted;
+      }
+    </script>
+    <script async type="text/javascript" src="index.js"></script>
+  </body>
+</html>
