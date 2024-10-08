@@ -1,6 +1,7 @@
 #include "projectile.h"
 #include "square.h"
 #include <vector>
+#include <chrono>
 
 class Enemy {
 public:
@@ -31,7 +32,7 @@ private:
     int shootInterval = 2000;  // Time interval between shots in milliseconds (2 seconds)
     bool canShoot;  // Whether the enemy can shoot
 
-    void shoot(std::vector<Projectile>& enemyProjectiles);  /
+    void shoot(std::vector<Projectile>& enemyProjectiles);  
     MovementPattern movementPattern;
     
     // Circular movement variables
