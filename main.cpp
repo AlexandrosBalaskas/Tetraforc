@@ -2,10 +2,8 @@
 #include <SDL_image.h>
 #include <SDL_ttf.h>  
 #include <SDL_mixer.h>
-#include <emscripten/emscripten.h>
 #include <iostream>
 #include "square.h"  
-#include <emscripten/bind.h>
 #include "projectile.h"
 #include <vector> 
 #include "enemy.h"  
@@ -63,6 +61,9 @@ float titleY = 0;           // Y position offset for the title
 float titleSpeed = 0.02f;  // Speed of oscillation
 float titleAmplitude = 20;  // Amplitude (how high and low it goes)
 float titleTime = 0;    
+bool running = true;
+const int targetFPS = 90;
+const int frameDelay = 1000 / targetFPS;
 
 
 bool isMusicMuted = false;  // Global flag to keep track of music state (on/off)
@@ -314,14 +315,13 @@ float scrollSpeed = 1.0f;      // Speed of scrolling
 float scrollPosition1 = 0.0f;   // Current scroll position for the first background
 float scrollPosition2 = 1280.0f; // Current scroll position for the second background (starts offscreen)
 
-// The main loop function called by Emscripten
 void main_loop() {
     static SDL_Event event;
 
     // Handle events (e.g., window close or user input)
     while (SDL_PollEvent(&event)) {
         if (event.type == SDL_QUIT) {
-            emscripten_cancel_main_loop();  // Stop the loop if the user quits
+            running = false;  // Stop the loop if the user quits
         } else if (currentState == MENU && event.type == SDL_MOUSEBUTTONDOWN) {
             // If the user clicks while in the MENU state, switch to PLAYING state
             currentState = PLAYING;
@@ -630,6 +630,17 @@ void main_loop() {
         // Present the new frame
         SDL_RenderPresent(renderer);
     }
+     // In your game loop
+    auto frameStart = std::chrono::steady_clock::now();
+    // Update and render logic here
+    auto frameTime = std::chrono::duration_cast<std::chrono::milliseconds>(
+        std::chrono::steady_clock::now() - frameStart).count();
+
+    // Delay to maintain target FPS
+    if (frameDelay > frameTime) {
+        SDL_Delay(frameDelay - frameTime);
+    }
+
 }
 
 int main(int argc, char* argv[]) {
@@ -779,8 +790,9 @@ int main(int argc, char* argv[]) {
 
     initializeEnemies(Enemy::MovementPattern::Zigzag,2,0);
 
-    // Set the main loop to be executed by Emscripten
-    emscripten_set_main_loop(main_loop, 0, 1);
+    while (running){
+        main_loop();
+    }
 
     // Cleanup (This part will never be reached in this example)
     SDL_DestroyTexture(backgroundTexture);
