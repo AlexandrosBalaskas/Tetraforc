@@ -143,10 +143,13 @@ extern "C" {
 
     void toggleMusicVolume() {
     if (isMusicMuted) {
-        Mix_VolumeMusic(MIX_MAX_VOLUME);  // Set volume to max
+        Mix_VolumeMusic(MIX_MAX_VOLUME);
+        Mix_Volume(-1,128);  // Set volume to max
         logToBrowser("Music ON (Volume set to max)");
     } else {
-        Mix_VolumeMusic(0);  // Mute the music
+        Mix_VolumeMusic(0);
+        Mix_Volume(-1,0);
+          // Mute the music
         logToBrowser("Music OFF (Muted)");
     }
     isMusicMuted = !isMusicMuted;  // Toggle the state
