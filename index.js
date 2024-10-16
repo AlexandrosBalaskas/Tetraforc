@@ -39,7 +39,7 @@ if (ENVIRONMENT_IS_NODE) {
 
 // --pre-jses are emitted after the Module integration code, so that they can
 // refer to Module (if they choose; they can also define Module)
-// include: C:\Users\abalaska\AppData\Local\Temp\tmpguhx5wfv.js
+// include: C:\Users\abalaska\AppData\Local\Temp\tmpjup56tnb.js
 
   if (!Module['expectedDataFileDownloads']) {
     Module['expectedDataFileDownloads'] = 0;
@@ -227,21 +227,21 @@ Module['FS_createPath']("/", "assets", true, true);
 
   })();
 
-// end include: C:\Users\abalaska\AppData\Local\Temp\tmpguhx5wfv.js
-// include: C:\Users\abalaska\AppData\Local\Temp\tmpr_v4f7yd.js
+// end include: C:\Users\abalaska\AppData\Local\Temp\tmpjup56tnb.js
+// include: C:\Users\abalaska\AppData\Local\Temp\tmprzpwu6mi.js
 
     // All the pre-js content up to here must remain later on, we need to run
     // it.
     if (Module['$ww'] || (typeof ENVIRONMENT_IS_PTHREAD != 'undefined' && ENVIRONMENT_IS_PTHREAD)) Module['preRun'] = [];
     var necessaryPreJSTasks = Module['preRun'].slice();
-  // end include: C:\Users\abalaska\AppData\Local\Temp\tmpr_v4f7yd.js
-// include: C:\Users\abalaska\AppData\Local\Temp\tmpovwkfz26.js
+  // end include: C:\Users\abalaska\AppData\Local\Temp\tmprzpwu6mi.js
+// include: C:\Users\abalaska\AppData\Local\Temp\tmp1bjd6lvv.js
 
     if (!Module['preRun']) throw 'Module.preRun should exist because file support used it; did a pre-js delete it?';
     necessaryPreJSTasks.forEach((task) => {
       if (Module['preRun'].indexOf(task) < 0) throw 'All preRun tasks that exist before user pre-js code should remain after; did you replace Module or modify Module.preRun?';
     });
-  // end include: C:\Users\abalaska\AppData\Local\Temp\tmpovwkfz26.js
+  // end include: C:\Users\abalaska\AppData\Local\Temp\tmp1bjd6lvv.js
 
 
 // Sometimes an existing Module object exists with properties
@@ -10656,6 +10656,7 @@ var _stopMusic = Module['_stopMusic'] = createExportWrapper('stopMusic', 0);
 var _Mix_HaltMusic = Module['_Mix_HaltMusic'] = createExportWrapper('Mix_HaltMusic', 0);
 var _toggleMusicVolume = Module['_toggleMusicVolume'] = createExportWrapper('toggleMusicVolume', 0);
 var _Mix_VolumeMusic = Module['_Mix_VolumeMusic'] = createExportWrapper('Mix_VolumeMusic', 1);
+var _Mix_Volume = Module['_Mix_Volume'] = createExportWrapper('Mix_Volume', 2);
 var __Z11loadTextureRKNSt3__212basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEEP12SDL_Renderer = Module['__Z11loadTextureRKNSt3__212basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEEP12SDL_Renderer'] = createExportWrapper('_Z11loadTextureRKNSt3__212basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEEP12SDL_Renderer', 2);
 var _IMG_Load = Module['_IMG_Load'] = createExportWrapper('IMG_Load', 1);
 var _SDL_CreateTextureFromSurface = Module['_SDL_CreateTextureFromSurface'] = createExportWrapper('SDL_CreateTextureFromSurface', 2);
@@ -10901,7 +10902,6 @@ var _SDL_UnlockAudioDevice = Module['_SDL_UnlockAudioDevice'] = createExportWrap
 var _Mix_SetMusicCMD = Module['_Mix_SetMusicCMD'] = createExportWrapper('Mix_SetMusicCMD', 1);
 var _SDL_CloseAudioDevice = Module['_SDL_CloseAudioDevice'] = createExportWrapper('SDL_CloseAudioDevice', 1);
 var _SDL_AtomicGet = Module['_SDL_AtomicGet'] = createExportWrapper('SDL_AtomicGet', 1);
-var _Mix_Volume = Module['_Mix_Volume'] = createExportWrapper('Mix_Volume', 2);
 var _SDL_MixAudioFormat = Module['_SDL_MixAudioFormat'] = createExportWrapper('SDL_MixAudioFormat', 5);
 var _Mix_PauseAudio = Module['_Mix_PauseAudio'] = createExportWrapper('Mix_PauseAudio', 1);
 var _Mix_AllocateChannels = Module['_Mix_AllocateChannels'] = createExportWrapper('Mix_AllocateChannels', 1);
